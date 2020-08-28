@@ -16,14 +16,17 @@ with open(vec_path, 'rb') as f:
 
 # argument parsing
 parser = reqparse.RequestParser()
-parser.add_argument('query')
-
+parser.add_argument(
+    'comment',
+    type=str,
+    required=True,
+    help="This field cannot be blank!"
+)
 
 class PredictSentiment(Resource):
-    def get(self, comment):
-        # use parser and find the user's query
+    def post(self):
         args = parser.parse_args()
-        user_query = args['query']
+        comment = args['comment']
 
         # vectorize the user's query and make a prediction
         uq_vectorized = model.vectorizer_transform(np.array([comment]))
@@ -40,4 +43,5 @@ class PredictSentiment(Resource):
         confidence = round(pred_proba[0], 3)
 
         # create JSON object
-        return { 'prediction': pred_text, 'confidence': confidence }
+        return { 'prediction': pred_text, 'confidence': confidence }, 200
+
