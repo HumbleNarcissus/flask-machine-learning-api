@@ -8,3 +8,9 @@ gunicorn==19.9.0
 psycopg2-binary==2.8.0
 SQLAlchemy==1.2.14
 Flask-Testing==0.6.2
+chalice
+matplotlib
+sklearn
+numpy
+scipy
+pandas
