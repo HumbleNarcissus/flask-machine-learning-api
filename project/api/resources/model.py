@@ -7,7 +7,6 @@ from .utils import plot_roc
 
 
 class NLPModel(object):
-
     def __init__(self):
         """Simple NLP
         Attributes:
