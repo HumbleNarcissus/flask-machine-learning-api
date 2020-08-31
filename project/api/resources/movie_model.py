@@ -3,6 +3,7 @@ from api import db
 class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(50), nullable=False)
+    url = db.Column(db.String(250), nullable=True)
     comments = db.relationship('Comments', backref='comment', lazy=True)
 
     def __init__(self, title):
