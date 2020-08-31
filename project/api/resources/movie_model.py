@@ -12,7 +12,8 @@ class Movie(db.Model):
         # return object in json format
         return {
             'id': self.id,
-            'title': self.title
+            'title': self.title,
+            'comments': [comment.json() for comment in self.comments]
         }
     
     def save_to_db(self):

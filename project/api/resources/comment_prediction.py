@@ -32,6 +32,9 @@ parser.add_argument(
 )
 
 class PredictSentiment(Resource):
+    def get(self):
+        return {'movies': [x.json() for x in Movie.query.all()]}, 200
+
     def post(self):
         args = parser.parse_args()
         title = args['title']
