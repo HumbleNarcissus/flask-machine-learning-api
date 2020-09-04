@@ -4,6 +4,7 @@ from flask import Flask, render_template
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+import flask_cors
 import pickle
 
 db = SQLAlchemy()
@@ -14,6 +15,9 @@ def create_app(script_info=None):
     Creating and configurating app
     """
     app = Flask(__name__)
+
+    # enable cors
+    flask_cors.CORS(app)
 
     # config
     app_settings = os.getenv('APP_SETTINGS')
