@@ -6,7 +6,8 @@ class Movie(db.Model):
     url = db.Column(db.String(250), nullable=True)
     comments = db.relationship('Comments', backref='comment', lazy=True)
 
-    def __init__(self, title):
+    def __init__(self, title, url):
+        self.url = url
         self.title = title
 
     def json(self):
@@ -14,6 +15,7 @@ class Movie(db.Model):
         return {
             'id': self.id,
             'title': self.title,
+            'url': self.url,
             'comments': [comment.json() for comment in self.comments]
         }
     
@@ -42,7 +44,8 @@ class Comments(db.Model):
             'id': self.id,
             'text': self.text,
             'prob': self.prob,
-            'positive': self.positive
+            'positive': self.positive,
+            'movie_id': self.movie_id
         }
 
     def save_to_db(self):

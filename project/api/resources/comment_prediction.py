@@ -28,7 +28,12 @@ parser.add_argument(
     'comments',
     required=False,
     action="append",
-    help="This field cannot be blank!"
+)
+
+parser.add_argument(
+    'url',
+    required=False,
+    type=str,
 )
 
 class PredictSentiment(Resource):
@@ -39,9 +44,7 @@ class PredictSentiment(Resource):
         args = parser.parse_args()
         title = args['title']
         comments = args['comments']
-        
-        movie = Movie(title)
-        movie.save_to_db()
+        url = args['url']
 
         # check if movie exists
         result = Movie.query.filter_by(
@@ -50,7 +53,9 @@ class PredictSentiment(Resource):
 
         if result is not None:
             return {"message": "Movie already exists"}, 409
-
+        
+        movie = Movie(title, url)
+        movie.save_to_db()
 
         for comment in comments:
             # vectorize the user's query and make a prediction
@@ -70,5 +75,4 @@ class PredictSentiment(Resource):
             comment = Comments(comment, pred_text, pred_proba[0], movie.id)
             comment.save_to_db()
 
-        # create JSON object
-        return { 'info': 'Ok' }, 200
+        return {}, 204

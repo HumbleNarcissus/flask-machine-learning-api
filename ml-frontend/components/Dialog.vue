@@ -27,12 +27,12 @@
               required
             ></v-text-field>
             <div
-              v-for="(input, index) in data.inputs"
+              v-for="(input, index) in data.comments"
               :key="index"
               class="mb-3 mt-4"
             >
               <v-textarea
-                v-model="input.name"
+                v-model="input.text"
                 label="Comment text"
                 hide-details
                 auto-grow
@@ -43,7 +43,7 @@
                 <v-btn
                   color="green"
                   @click="addInput()"
-                  v-show="index === data.inputs.length - 1"
+                  v-show="index === data.comments.length - 1"
                   class="mr-2"
                 >
                   Add
@@ -57,7 +57,7 @@
         </v-container>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="dialog = false">
+          <v-btn color="primary" text @click="() => sendData()">
             Submit
           </v-btn>
         </v-card-actions>
@@ -76,16 +76,22 @@ export default {
       data: {
         title: "",
         url: "",
-        inputs: [{ text: "" }]
+        comments: [{ text: "" }]
       }
     };
   },
   methods: {
     addInput() {
-      this.data.inputs.push({ text: "" });
+      this.data.comments.push({ text: "" });
     },
     deleteInput(index) {
-      this.data.inputs.splice(index, 1);
+      this.data.comments.splice(index, 1);
+    },
+    async sendData() {
+      const { title, url, comments } = this.data
+      const commentTexts = comments.map(item => item.text)
+      const sendData = { title, url, comments: commentTexts }
+      await this.$axios.$post('localhost/prediction', sendData)
     }
   }
 };
