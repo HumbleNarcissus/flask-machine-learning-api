@@ -46,7 +46,7 @@
                   v-show="index === data.comments.length - 1"
                   class="mr-2"
                 >
-                  Add
+                  Add another comment
                 </v-btn>
                 <v-btn color="red" @click="deleteInput(index)">
                   Delete
@@ -87,11 +87,24 @@ export default {
     deleteInput(index) {
       this.data.comments.splice(index, 1);
     },
+    clearData() {
+      this.data.title = ''
+      this.data.url = ''
+      this.data.comments = [{ text: "" }]
+    },
     async sendData() {
       const { title, url, comments } = this.data
-      const commentTexts = comments.map(item => item.text)
-      const sendData = { title, url, comments: commentTexts }
-      await this.$axios.$post('localhost/prediction', sendData)
+      try {
+        const commentTexts = comments.map(item => item.text)
+        const sendData = { title, url, comments: commentTexts }
+        await this.$axios.$post('http://localhost/prediction', sendData)
+
+      } catch (error) {
+        console.log(error)
+      } finally {
+        this.dialog = false
+        this.clearData()
+      }
     }
   }
 };

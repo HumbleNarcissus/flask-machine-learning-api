@@ -3,17 +3,18 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 import MovieList from '~/components/MovieList.vue'
 export default {
   components: { MovieList },
-  data() {
-    return {
-      movies: []
-    }
+  computed: {
+    ...mapState('movies', ['movies'])
+  },
+  methods: {
+    ...mapActions('movies', ['getMovies'])
   },
   async fetch() {
-    const { movies } = await this.$axios.$get('http://localhost/prediction')
-    this.movies = movies
+    this.getMovies()
   }
 }
 </script>

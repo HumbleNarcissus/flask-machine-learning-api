@@ -74,5 +74,10 @@ class PredictSentiment(Resource):
 
             comment = Comments(comment, pred_text, pred_proba[0], movie.id)
             comment.save_to_db()
+        
+        # get saved movie from db
+        result = Movie.query.filter_by(
+            title=args['title']
+        ).first()
 
-        return {}, 204
+        return { "result": result.json() }, 200
