@@ -1,10 +1,12 @@
 <template>
-  <v-container class="movie-container">
+  <v-container class="movie-container" @click="openDialog">
+    <movie-dialog ref="modal" :movie=selectedMovie />
     <v-card
       v-for="movie in movies"
       :key="movie.id"
       width="320px"
       min-height="400px"
+      @click="selectedMovie = movie"
     >
       <v-img
         class="white--text align-end"
@@ -19,11 +21,25 @@
 </template>
 
 <script>
+import MovieDialog from '~/components/MovieDialog.vue'
 export default {
+  components: {
+    MovieDialog
+  },
+  data() {
+    return {
+      selectedMovie: {}
+    }
+  },
   props: {
     movies: {
       type: Array,
       default: () => {}
+    }
+  },
+  methods: {
+    openDialog() {
+      this.$refs.modal.openDialog()
     }
   }
 };
@@ -31,8 +47,9 @@ export default {
 
 <style>
 .movie-container {
+  margin-top: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 16px;
+  gap: 40px;
 }
 </style>
