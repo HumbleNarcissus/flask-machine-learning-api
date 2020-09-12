@@ -21,6 +21,12 @@ services:
     depends_on:
       - api-db
   
+  ml-frontend:
+    build: ./ml-frontend/
+    restart: always
+    ports: 
+      - "3333:3333"
+    command: "npm run start"
   api-db:
     build:
       context: ./project/database
@@ -33,10 +39,11 @@ services:
 
   nginx:
     build:
-      context: ./project/nginx
+      context: ./nginx
       dockerfile: Dockerfile
     restart: always
     ports:
       - 80:80
     depends_on:
       - project
+      - ml-frontend
