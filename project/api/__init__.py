@@ -30,7 +30,7 @@ def create_app(script_info=None):
 
     # init api resources routes
     from api.resources.comment_prediction import PredictSentiment
-    api.add_resource(PredictSentiment, '/prediction')
+    api.add_resource(PredictSentiment, '/api/prediction')
 
     # init static routes with static resources
     @app.route("/")

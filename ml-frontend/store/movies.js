@@ -17,7 +17,7 @@ export const mutations = {
 export const actions = {
   async getMovies({ commit }) {
     try {
-      const { movies } = await this.$axios.$get('http://localhost/prediction')
+      const { movies } = await this.$axios.$get('/prediction')
       commit('GET_MOVIES', movies)
     } catch (error) {
       console.log(error)
@@ -25,7 +25,7 @@ export const actions = {
   },
   async postMovie({ commit }, data) {
     try {
-      const { result } = await this.$axios.$post('http://localhost/prediction', data)
+      const { result } = await this.$axios.$post('/prediction', data)
       commit('POST_MOVIE', result)
     } catch (error) {
       console.log(error)

@@ -55,6 +55,9 @@ export default {
   modules: [
     '@nuxtjs/axios',
   ],
+  axios: {
+    baseURL: process.env.API
+  },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module

@@ -1,0 +1,59 @@
+version: '3.6'
+
+# docker-compose for development environment
+
+services:
+  project:
+    build:
+      context: ./project
+      dockerfile: Dockerfile-stag
+    volumes:
+      - './project:/usr/src/app'
+    ports:
+      - '5001:5000'
+    environment:
+      - FLASK_APP=manage.py
+      - FLASK_ENV=development
+      - APP_SETTINGS=api.configs.StagingConfig
+      - DATABASE_URL=postgres://postgres:postgres@api-db:5432/api_dev
+      - DATABASE_TEST_URL=postgres://postgres:postgres@api-db:5432/api_test
+      - SECRET_KEY=my_precious
+    depends_on:
+      - api-db
+  swagger:
+    build:
+      context: ./swagger
+      dockerfile: Dockerfile
+    ports:
+      - 3008:8080
+    environment:
+      - URL=swagger.json
+    depends_on:
+      - project
+  
+  ml-frontend:
+    build: ./ml-frontend/
+    restart: always
+    ports: 
+      - "3333:3333"
+    command: "npm run start"
+  api-db:
+    build:
+      context: ./project/database
+      dockerfile: Dockerfile
+    ports:
+      - 5435:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - project
+      - ml-frontend

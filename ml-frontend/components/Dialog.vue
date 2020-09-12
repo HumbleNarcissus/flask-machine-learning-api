@@ -97,7 +97,7 @@ export default {
       try {
         const commentTexts = comments.map(item => item.text)
         const sendData = { title, url, comments: commentTexts }
-        await this.$axios.$post('http://localhost/prediction', sendData)
+        await this.$axios.$post('/prediction', sendData)
       } catch (error) {
         console.log(error)
       } finally {
