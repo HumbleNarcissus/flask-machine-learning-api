@@ -26,7 +26,7 @@ class Movie(db.Model):
 
 class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    text = db.Column(db.String(100), nullable=True)
+    text = db.Column(db.Text, nullable=False)
     positive = db.Column(db.String(10), nullable=False)
     prob = db.Column(db.Float, nullable=False)
     movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'),
