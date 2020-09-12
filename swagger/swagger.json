@@ -1,0 +1,62 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "version": "0.0.1",
+    "title": "Movie",
+    "description": "Swagger spec for documenting the movie service"
+  },
+  "servers": [
+    {
+      "url": "http://localhost"
+    }
+  ],
+  "paths": {
+    "/prediction": {
+      "get": {
+        "summary": "Get all movies",
+        "responses": {
+          "200": {
+            "description": "Will return array of movie objects"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates new movie object",
+        "requestBody": {
+          "description": "Movie to add",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title"],
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "comments": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "user object"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
