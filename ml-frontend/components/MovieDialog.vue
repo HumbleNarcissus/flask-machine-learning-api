@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import CommentsTable from "~/components/CommentsTable.vue";
-import DoughnutChart from "~/components/DoughnutChart.vue";
+import CommentsTable from '~/components/CommentsTable.vue'
+import DoughnutChart from '~/components/DoughnutChart.vue'
 export default {
   compontenst: {
     CommentsTable,
@@ -28,20 +28,20 @@ export default {
   data() {
     return {
       dialog: false
-    };
+    }
   },
   methods: {
     openDialog() {
-      this.dialog = true;
+      this.dialog = true
     },
     createDataSets() {
-      const { comments = [] } = this.movie;
-      const positive = comments.filter(item => item.positive === "Positive");
-      const negative = comments.filter(item => item.positive === "Negative");
-      return [{ data: [positive.length, negative.length], backgroundColor: ['green', 'red'] }];
+      const { comments = [] } = this.movie
+      const positive = comments.filter(item => item.positive === 'Positive')
+      const negative = comments.filter(item => item.positive === 'Negative')
+      return [{ data: [positive.length, negative.length], backgroundColor: ['green', 'red'] }]
     }
   }
-};
+}
 </script>
 
 <style></style>

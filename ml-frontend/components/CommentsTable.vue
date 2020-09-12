@@ -17,13 +17,13 @@ export default {
   data() {
     return {
       headers: [
-          { text: "Text", value: "text"},
-          { text: "Probability", value: "prob" },
-          { text: "Result", value: "positive" }
+        { text: 'Text', value: 'text'},
+        { text: 'Probability', value: 'prob' },
+        { text: 'Result', value: 'positive' }
       ]
-    };
+    }
   }
-};
+}
 </script>
 
 <style></style>

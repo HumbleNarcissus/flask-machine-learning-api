@@ -1,6 +1,6 @@
 export const state = () => ({
   movies: []
-});
+})
 
 export const mutations = {
   GET_MOVIES: (state, movies) => {
@@ -12,7 +12,7 @@ export const mutations = {
       movie
     ]
   }
-};
+}
 
 export const actions = {
   async getMovies({ commit }) {

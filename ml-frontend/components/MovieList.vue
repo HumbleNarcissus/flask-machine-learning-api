@@ -42,7 +42,7 @@ export default {
       this.$refs.modal.openDialog()
     }
   }
-};
+}
 </script>
 
 <style>

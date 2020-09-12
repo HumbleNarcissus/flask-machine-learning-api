@@ -1,5 +1,5 @@
 <script>
-import { Doughnut } from "vue-chartjs";
+import { Doughnut } from 'vue-chartjs'
 
 export default {
   extends: Doughnut,
@@ -17,15 +17,15 @@ export default {
     this.renderChart({
       labels: this.labels,
       datasets: this.datasets
-    });
+    })
   },
   watch: {
     datasets() {
       this.renderChart({
         labels: this.labels,
         datasets: this.datasets
-      });
+      })
     }
   }
-};
+}
 </script>

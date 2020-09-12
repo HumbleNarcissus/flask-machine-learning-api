@@ -72,25 +72,25 @@ export default {
     return {
       dialog: false,
       valid: false,
-      requiredRules: [v => !!v || "Field is required"],
+      requiredRules: [v => !!v || 'Field is required'],
       data: {
-        title: "",
-        url: "",
-        comments: [{ text: "" }]
+        title: '',
+        url: '',
+        comments: [{ text: '' }]
       }
-    };
+    }
   },
   methods: {
     addInput() {
-      this.data.comments.push({ text: "" });
+      this.data.comments.push({ text: '' })
     },
     deleteInput(index) {
-      this.data.comments.splice(index, 1);
+      this.data.comments.splice(index, 1)
     },
     clearData() {
       this.data.title = ''
       this.data.url = ''
-      this.data.comments = [{ text: "" }]
+      this.data.comments = [{ text: '' }]
     },
     async sendData() {
       const { title, url, comments } = this.data
@@ -98,7 +98,6 @@ export default {
         const commentTexts = comments.map(item => item.text)
         const sendData = { title, url, comments: commentTexts }
         await this.$axios.$post('http://localhost/prediction', sendData)
-
       } catch (error) {
         console.log(error)
       } finally {
@@ -107,5 +106,5 @@ export default {
       }
     }
   }
-};
+}
 </script>

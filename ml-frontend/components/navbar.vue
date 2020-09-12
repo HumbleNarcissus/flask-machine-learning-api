@@ -8,8 +8,6 @@
   </div>
 </template>
 
-</template>
-
 <script>
 import Dialog from '~/components/Dialog.vue'
 export default {
