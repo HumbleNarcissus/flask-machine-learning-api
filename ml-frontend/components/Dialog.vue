@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -81,6 +82,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions('movies', ['postMovie']),
     addInput() {
       this.data.comments.push({ text: '' })
     },
@@ -97,7 +99,7 @@ export default {
       try {
         const commentTexts = comments.map(item => item.text)
         const sendData = { title, url, comments: commentTexts }
-        await this.$axios.$post('/prediction', sendData)
+        this.postMovie(sendData)
       } catch (error) {
         console.log(error)
       } finally {

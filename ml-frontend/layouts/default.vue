@@ -1,5 +1,5 @@
 <template>
-  <v-app data-app class="app">
+  <v-app data-app>
     <navbar />
     <nuxt />
   </v-app>
@@ -14,7 +14,4 @@ export default {
 </script>
 
 <style>
-  .app {
-    height: 100vh;
-  }
 </style>

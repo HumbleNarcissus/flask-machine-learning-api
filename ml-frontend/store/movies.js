@@ -7,6 +7,7 @@ export const mutations = {
     state.movies = movies
   },
   POST_MOVIE: (state, movie) => {
+    console.log(movie)
     state.movies = [
       ...state.movies,
       movie

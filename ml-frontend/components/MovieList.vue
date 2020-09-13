@@ -49,7 +49,8 @@ export default {
 .movie-container {
   margin-top: 40px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat( auto-fit, minmax(320px, 1fr) );
   gap: 40px;
+  justify-items: center;
 }
 </style>
