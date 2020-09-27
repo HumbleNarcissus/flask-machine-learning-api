@@ -1,6 +1,6 @@
 <template>
   <v-container class="movie-container" @click="openDialog">
-    <movie-dialog ref="modal" :movie=selectedMovie />
+    <movie-dialog ref="modal" :movie="selectedMovie" />
     <v-card
       v-for="movie in movies"
       :key="movie.id"
@@ -49,7 +49,7 @@ export default {
 .movie-container {
   margin-top: 40px;
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax(320px, 1fr) );
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 40px;
   justify-items: center;
 }
