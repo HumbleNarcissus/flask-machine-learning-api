@@ -20,7 +20,7 @@ export const actions = {
       const { movies } = await this.$axios.$get('/prediction')
       commit('GET_MOVIES', movies)
     } catch (error) {
-      console.log(error)
+      this.$toast.error('GET movies error.')
     }
   },
   async postMovie({ commit }, data) {
@@ -28,7 +28,7 @@ export const actions = {
       const { result } = await this.$axios.$post('/prediction', data)
       commit('POST_MOVIE', result)
     } catch (error) {
-      console.log(error)
+      this.$toast.error('Error while adding new movie.')
     }
   }
 }
