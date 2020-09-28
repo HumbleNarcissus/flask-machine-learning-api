@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar dense dark>
-      <v-toolbar-title>ML comment checker</v-toolbar-title>
+      <v-toolbar-title>ML movie comment check</v-toolbar-title>
       <v-spacer />
       <Dialog />
     </v-app-bar>
